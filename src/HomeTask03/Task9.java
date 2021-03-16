@@ -11,5 +11,5 @@ public class Task9 {
     }
     //1.Что будет в консоли, еслиaNumber=  Second String + ThirdString
     // 2.Что будет в консоли, еслиaNumber=0?  FirstString + thirdString
-
+    // 3.Используйте фигурные скобки, {и}, чтобы сделать кодболее читаемым
 }
