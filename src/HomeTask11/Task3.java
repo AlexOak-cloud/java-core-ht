@@ -13,7 +13,6 @@ import java.util.*;
 // Навзание файла это ключ, содержимое это строки из листа
 public class Task3 {
 
-    private static Writer fileWriter;
     private static File file;
     private static final String CATALOG_FILES = "D:/JavaFiles/Task3/%s";
 
@@ -45,27 +44,19 @@ public class Task3 {
         for (Map.Entry<String, List<String>> temporary : map.entrySet()) {
             String nameFile = temporary.getKey();
             List<String> content = temporary.getValue();
-            try {
-                file = new File(String.format(CATALOG_FILES,nameFile));
+            try (FileWriter fileWriter = new FileWriter(file, false)) {
+                file = new File(String.format(CATALOG_FILES, nameFile));
                 if (!file.exists()) {
                     file.createNewFile();
                 }
-                fileWriter = new FileWriter(file,false);
                 for (String trash : content) {
                     fileWriter.write(trash + "\n");
                 }
                 fileWriter.flush();
-                succefully = true ;
-
+                succefully = true;
             } catch (IOException ex) {
                 System.out.println(ex.getMessage());
-            }
-        }
-        if (fileWriter != null) {
-            try {
-                fileWriter.close();
-            } catch (IOException ex) {
-                System.out.println(ex.getMessage());
+                succefully = false;
             }
         }
         return succefully;

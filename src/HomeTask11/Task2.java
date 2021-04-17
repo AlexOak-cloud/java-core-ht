@@ -7,11 +7,9 @@ import java.util.Scanner;
 // 2 Взять из второй строки контент (после “content:”)
 // 3 Сохранить контен в файл с названием, взятым из файл
 public class Task2 {
-    private static Reader fileReader;
     private static final String FILE_PATH = "D:/JavaFiles/Task2/File1.txt";
     private static File file;
     private static final String FILE_CATALOG = "D:/JavaFiles/Task2/%s";
-    private static Writer fileWriter;
 
     public static void main(String[] args) {
         System.out.println(createNewFile(readName(), readContent()));
@@ -45,7 +43,6 @@ public class Task2 {
     }
 
     private static boolean createNewFile(String nameFile, String content) {
-        boolean succefully = false;
         try (FileWriter fileWriter = new FileWriter(file, false)) {
             file = new File(String.format(FILE_CATALOG, nameFile));
             if (!file.exists()) {

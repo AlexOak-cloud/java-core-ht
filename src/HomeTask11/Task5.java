@@ -6,8 +6,7 @@ import java.io.Reader;
 
 public class Task5 {
 
-    public static final String FILE_PATH = "D:/JavaFiles/Task5/File_Name.txt";
-    private static Reader reader;
+    private static final String FILE_PATH = "D:/JavaFiles/Task5/File_Name.txt";
 
     public static void main(String[] args) {
         System.out.println(readFile(FILE_PATH));
@@ -15,8 +14,7 @@ public class Task5 {
 
     public static String readFile(String fileName) {
         String returning = "";
-        try {
-            reader = new FileReader(fileName);
+        try (FileReader reader = new FileReader(fileName)) {
             int i;
             while ((i = reader.read()) != -1) {
                 returning += (char) i;
