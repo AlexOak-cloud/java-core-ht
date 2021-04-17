@@ -10,7 +10,7 @@ public class Task5 {
     private static Reader reader;
 
     public static void main(String[] args) {
-        readFile(FILE_PATH);
+        System.out.println(readFile(FILE_PATH));
     }
 
     public static String readFile(String fileName) {
@@ -19,7 +19,7 @@ public class Task5 {
             reader = new FileReader(fileName);
             int i;
             while ((i = reader.read()) != -1) {
-                System.out.print((char) i);
+                returning += (char) i;
             }
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
