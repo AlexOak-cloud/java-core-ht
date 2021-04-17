@@ -27,10 +27,15 @@ public class Account implements Serializable {
     }
 
     public static void main(String[] args) throws ClassNotFoundException {
-        boolean succefully ;
-        Account account = new Account("Aliaksandr", "dubvlecs222", "sdfasdf");
-        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file,false))) {
-            if(!file.exists()){
+        Account account = new Account("ASD","asd" ,"asd");
+        System.out.println(saveAccount(account));
+        System.out.println();
+        System.out.println(readAccount(file));
+    }
+    public static boolean saveAccount(Account account)throws ClassNotFoundException {
+        boolean succefully = false;
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file, false))) {
+            if (!file.exists()) {
                 file.createNewFile();
             }
             oos.writeObject(account);
@@ -38,11 +43,18 @@ public class Account implements Serializable {
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
         }
-        try(ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file))){
-            Account abc = (Account)ois.readObject();
-            System.out.println(abc.getEmail()+ " " + abc.getUserName() + " " + abc.getPassword());
-        }catch (IOException ex){
+        return succefully;
+    }
+
+    public static boolean readAccount(File file) throws ClassNotFoundException {
+        boolean succefully = false;
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file))) {
+            Account abc = (Account) ois.readObject();
+            System.out.println(abc.getEmail() + " " + abc.getUserName() + " " + abc.getPassword());
+            succefully = true;
+        } catch (IOException ex) {
             System.out.println(ex.getMessage());
         }
+        return succefully;
     }
 }
