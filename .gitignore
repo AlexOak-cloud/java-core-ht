@@ -2,6 +2,7 @@
 *.class
 *.txt
 .idea/
+lib/
 
 # Log file
 *.log
